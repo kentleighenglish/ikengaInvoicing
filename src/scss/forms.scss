@@ -1,0 +1,105 @@
+@import '_global';
+
+label {
+	display: block;
+	width: 100%;
+	color: $primary;
+
+	&.checkbox {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		cursor: pointer;
+
+		>span {
+			position: relative;
+			display: block;
+			padding: 4px;
+
+			margin-left: $gap;
+			min-width: 30px;
+			min-height: 30px;
+			width: 30px;
+			height: 30px;
+			border: 1px solid $primary;
+			border-radius: 3px;
+
+			transition: border-color .3s;
+
+			&:hover {
+				border-color: lighten($primary, 5%);
+			}
+
+			&:before {
+				position: absolute;
+				display: block;
+				content: "";
+
+				width: 20px;
+				height: 20px;
+
+				background: $primary;
+				border-radius: 3px;
+				transition: .1s;
+				opacity: 0;
+			}
+		}
+
+		input:checked+span {
+			&:before {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+input {
+	display: block;
+	width: 100%;
+	margin: ($gap /2) 0;
+	padding: ($gap / 2);
+	font-size: $font-size-default;
+	font-family: $font-family-default;
+
+	background: $grey-dark;
+	border: 1px solid $primary;
+	border-radius: 3px;
+	color: white;
+
+	&[type="color"] {
+		padding: 0;
+		border: none;
+		height: 40px;
+	}
+
+	&[type="checkbox"] {
+		display: none;
+	}
+}
+
+select {
+	display: block;
+	width: 100%;
+	margin: ($gap /2) 0;
+	padding: ($gap / 2);
+	font-size: $font-size-default;
+	font-family: $font-family-default;
+
+	background: $grey-dark;
+	border: 1px solid $primary;
+	border-radius: 3px;
+	color: white;
+
+	&:active, &:focus {
+		outline: none;
+	}
+
+
+	option {
+		font-size: 16px;
+	}
+
+	&:value {
+		opacity: .2;
+	}
+}

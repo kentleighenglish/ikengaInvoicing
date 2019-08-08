@@ -1,0 +1,54 @@
+<div class="sidebar">
+	<div class="sidebar__column">
+		<div class="sidebar__row">
+			<label for="primaryColour">
+				Primary Colour
+				<input name="primaryColour" type="color" ng-model="vm.colours.primary" />
+			</label>
+		</div>
+		<div class="sidebar__row">
+			<label for="primaryColour">
+				Secondary Colour
+				<input name="secondaryColour" type="color" ng-model="vm.colours.secondary" />
+			</label>
+		</div>
+	</div>
+	<br>
+	<div class="sidebar__column">
+		<label class="checkbox">
+			Use Fogbugz
+			<input type="checkbox" ng-model="vm.fb.settings.useFogbugz" ng-click="vm.useFogbugzToggle(!vm.fb.settings.useFogbugz)" />
+			<span></span>
+		</label>
+	</div>
+	<hr>
+	<div ng-if="!vm.fb.settings.useFogbugz">
+		<div class="sidebar__row">
+		</div>
+	</div>
+	<div ng-if="vm.fb.settings.useFogbugz" class="sidebar__column">
+		<div class="sidebar__row">
+			<label for="project">
+				Project
+				<select name="project" ng-model="vm.selectedProject" ng-change="vm.changeProject()">
+					<option ng-repeat="p in vm.projects" ng-value="$index">{{ p.name }}</option>
+				</select>
+			</label>
+		</div>
+		<hr>
+		<div class="sidebar__column">
+			<div class="sidebar__row">
+				<label for="dateFrom">
+					Timesheet From:
+					<input type="date" ng-model="vm.fb.settings.dateFrom" ng-disabled="!vm.fb.settings.useFogbugz" />
+				</label>
+			</div>
+			<div class="sidebar__row">
+				<label for="dateTo">
+					Timesheet To:
+					<input type="date" ng-model="vm.fb.settings.dateTo" ng-disabled="!vm.fb.settings.useFogbugz" />
+				</label>
+			</div>
+		</div>
+	</div>
+</div>

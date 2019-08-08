@@ -1,0 +1,98 @@
+<div class="canvas" ng-style="{ width: vm.width+'px', fontSize: vm.fontSize+'em' }">
+	<div class="canvas__headerBar" ng-style="{ background: vm.canvasSettings.colours.primary }"></div>
+	<div class="canvas__body">
+		<div class="canvas__header" ng-style="{ color: vm.canvasSettings.colours.secondary }"><h1>Ikenga Innovations Ltd</h2></div>
+		<div class="canvas__address">
+			Flat 2, 19 New Street<br>
+			Bedworth, CV12 9DL<br>
+			<i>invoicing@ikengainnovations.com</i><br>
+			<i>07495074144</i>
+		</div>
+		<div class="canvas__subHeader" ng-style="{ color: vm.canvasSettings.colours.primary }"><h2>Invoice</h2></div>
+		<div class="canvas__submitted" ng-style="{ color: vm.canvasSettings.colours.secondary }">Submitted on: 06/07/18</div>
+		<div class="canvas__details">
+			<table>
+				<tr>
+					<td rowspan="2">
+						<b>Invoice for</b>
+						<p>Amer Siddiq<br>
+						Locumhive Limited<br>
+						Kemp House, 15 City Road<br>
+						London, EC1V 2NX</p>
+					</td>
+					<td>
+						<b>Payable to</b>
+						<p>Ikenga Innovations</p>
+					</td>
+					<td>
+						<b>Invoice #</b>
+						<p>LH006</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>Project</b>
+						<p>{{vm.canvasSettings.details.project}}</p>
+					</td>
+					<td>
+						<b>Due date</b>
+						<p>20/07/2018</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<hr>
+		<div class="canvas__items">
+			<table>
+				<tr ng-style="{ color: vm.canvasSettings.colours.primary }">
+					<th>Description</th>
+					<th>Qty</th>
+					<th>Unit Price</th>
+					<th>Total Price</th>
+				</tr>
+				<tr>
+					<td>Booking Amendments</td>
+					<td>1</td>
+					<td>&pound;216.67</td>
+					<td>&pound;216.67</td>
+				</tr>
+			</table>
+		</div>
+		<div class="canvas__row">
+			<div class="canvas__bankDetails">
+				<h2 ng-style="{ color: vm.canvasSettings.colours.secondary }">Bank Details</h2>
+				<table>
+					<tr>
+						<td>Bank Name</td>
+						<td>HSBC Bank Plc</td>
+					</tr>
+					<tr>
+						<td>Account Name</td>
+						<td>Ikenga Innovations Ltd</td>
+					</tr>
+					<tr>
+						<td>Account Number</td>
+						<td>1452152</td>
+					</tr>
+					<tr>
+						<td>Sort Code</td>
+						<td>40-18-17</td>
+					</tr>
+				</table>
+			</div>
+			<div class="canvas__total">
+				<table>
+					<tr>
+						<td class="label" ng-style="{ color: vm.canvasSettings.colours.primary }">Subtotal</td>
+						<td><b>&pound;216.67</b></td>
+					</tr>
+					<tr>
+						<td class="label" ng-style="{ color: vm.canvasSettings.colours.primary }">VAT</td>
+						<td><b>&pound;43.33</b></td>
+					</tr>
+				</table>
+				<h2 ng-style="{ color: vm.canvasSettings.colours.secondary }">&pound;260.00</h2>
+			</div>
+		</div>
+	</div>
+</div>

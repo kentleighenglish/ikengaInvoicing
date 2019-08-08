@@ -1,0 +1,14 @@
+
+layout {
+	display: block;
+	height: 100%;
+	width: 100%;
+
+	.layoutContainer, .layoutContainer__content, ui-view, ng-transclude {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+	}
+}
