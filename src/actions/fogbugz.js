@@ -15,16 +15,18 @@ const useFogbugzToggle = (value) => ({
 const getProjects = () => async (dispatch, getState) => {
 	const { fogbugz: { projects } } = getState();
 
-	dispatch({
-		type: types.FETCH_PROJECTS
-	})
+	if (!projects.length) {
+		dispatch({
+			type: types.FETCH_PROJECTS
+		});
 
-	const projects = await apiGetProjects();
+		const results = await apiGetProjects();
 
-	dispatch({
-		type: types.RECEIVE_PROJECTS,
-		payload: projects
-	});
+		dispatch({
+			type: types.RECEIVE_PROJECTS,
+			payload: results
+		});
+	}
 }
 
 module.exports = {

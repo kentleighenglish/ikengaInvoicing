@@ -6,6 +6,7 @@ const thunk = require('redux-thunk').default;
 
 require('ng-redux');
 require('@uirouter/angularjs');
+const { Visualizer } = require('@uirouter/visualizer');
 const { router } = require('redux-ui-router');
 
 var middleware = [
@@ -42,6 +43,9 @@ const init = (modules, rootReducer, routes) => {
 		$locationProvider.html5Mode(true);
 
 		routes.map($stateProvider.state);
+	}])
+	.config(['$uiRouterProvider', function($uiRouter) {
+		$uiRouter.plugin(Visualizer)
 	}]);
 	// .factory('socket', SocketFactory)
 

@@ -9,7 +9,19 @@ const routes = [
 	},
 	{
 		name: "edit",
-		url: "/edit?{tab}"
+		url: "/edit/:id?{tab:string}",
+		params: {
+			id: {
+				type: 'string',
+				value: null,
+				squash: true
+			},
+			tab: {
+				type: 'string',
+				value: 'design',
+				squash: false
+			}
+		}
 	},
 ];
 
