@@ -5,6 +5,7 @@ const config = require('config');
 const debug = require('debug')('app:server');
 const fs = require('fs');
 
+const db = require('./server/db');
 const ms = require('./server/manuscript');
 
 app.use(express.static(path.join(__dirname, 'public')));
