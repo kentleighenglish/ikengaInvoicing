@@ -27,9 +27,10 @@ class PageCanvasController {
 		this.calculateSizes();
 	}
 
-	mapStateToThis({ canvas }) {
+	mapStateToThis({ canvas: canvasSettings, fogbugz: { useFogbugz } }) {
 		return {
-			canvasSettings: canvas
+			canvasSettings,
+			useFogbugz
 		}
 	}
 

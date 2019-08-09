@@ -1,0 +1,10 @@
+@import "_global.scss";
+
+.flex {
+	display: flex;
+	width: 100%;
+
+	&--column {
+		flex-direction: column;
+	}
+}

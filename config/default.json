@@ -1,4 +1,5 @@
 {
   "name": "Ikenga Invoicing",
-	"projects": []
+	"projects": [],
+  "apiUrl": "https://kentleigh.manuscript.com/api/"
 }

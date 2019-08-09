@@ -12,17 +12,18 @@ const useFogbugzToggle = (value) => ({
 	payload: value
 });
 
-const getProjects = () => dispatch => {
+const getProjects = () => async (dispatch, getState) => {
+	const { fogbugz: { projects } } = getState();
+
 	dispatch({
 		type: types.FETCH_PROJECTS
 	})
 
-	apiGetProjects().then(projects => {
+	const projects = await apiGetProjects();
 
-		dispatch({
-			type: types.RECEIVE_PROJECTS,
-			payload: projects
-		})
+	dispatch({
+		type: types.RECEIVE_PROJECTS,
+		payload: projects
 	});
 }
 

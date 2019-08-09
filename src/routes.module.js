@@ -9,8 +9,8 @@ const routes = [
 	},
 	{
 		name: "edit",
-		url: "/edit"
-	}
+		url: "/edit?{tab}"
+	},
 ];
 
 createModule('RoutesModule', [], {

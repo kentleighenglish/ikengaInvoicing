@@ -6,14 +6,22 @@ class SidebarController {
 
 	constructor($scope, $ngRedux) {
 		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
+
+		this.tabs = {
+			design: 'format_paint',
+			details: 'assignment',
+			items: 'insert_chart',
+			charges: 'attach_money'
+		}
 	}
 
-	mapStateToThis({ fogbugz: fb, projects, canvas }) {
+	mapStateToThis({ fogbugz: fb, projects, canvas, router: { toParams: { tab = 'details' } } }) {
 		return {
 			fb,
 			projects: fb.projects,
 			colours: canvas.colours,
-			selectedProject: fb.projects[fb.selectedProject]
+			selectedProject: fb.projects[fb.selectedProject],
+			currentTab: tab
 		}
 	}
 

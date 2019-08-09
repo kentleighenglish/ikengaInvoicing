@@ -2,18 +2,22 @@ const axios = require('axios');
 const config = require('config');
 const debug = require('debug')('app:manuscript');
 
-const rootUrl = "https://apisandbox.manuscript.com/api/";
+const rootUrl = config.apiUrl;
 
 const logon = async () => {
 	const token = await genericCall('logon');
-
-	console.log(token);
 }
 
 const getProjects = async () => {
-	await logon();
+	const { projects = [] } = await genericCall('listProjects');
 
-	return await genericCall('listProjects');
+	return projects.reduce((arr, p) => ([
+		...arr,
+		{
+			id: p.ixProject,
+			name: p.sProject
+		}
+	]), []);
 }
 
 const genericCall = async (path, data = {}) => {
@@ -29,10 +33,16 @@ const genericCall = async (path, data = {}) => {
 	debug(`Making call to ${payload.url}`);
 	console.log('Payload', payload);
 
-	const response = await axios(payload);
+	try {
+		const { status, data } = await axios(payload);
 
-	if (response.status === 200) {
-		return response.data;
+		if (status === 200) {
+			return data.data;
+		}
+	} catch({ response }) {
+		if (response.data) {
+			throw response.data.errors;
+		}
 	}
 
 	return null;
