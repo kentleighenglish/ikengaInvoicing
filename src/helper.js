@@ -9,6 +9,11 @@ const createModule = (name, bootstrap = [], options = {}) => {
 			n => m.component(kebabToCamelCase(n), require(`${pathPrefix}${n}/${n}`))
 		);
 	}
+	if (directives) {
+		directives.map(
+			n => m.directive(kebabToCamelCase(n), require(`${pathPrefix}${n}/${n}`))
+		);
+	}
 	if (controllers) {
 		controllers.map(
 			n => m.controller(ucFirst(`${n}Controller`), require(`${pathPrefix}${n}/${n}`))
