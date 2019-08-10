@@ -45,7 +45,7 @@ const init = (modules, rootReducer, routes) => {
 		routes.map($stateProvider.state);
 	}])
 	.config(['$uiRouterProvider', function($uiRouter) {
-		$uiRouter.plugin(Visualizer)
+		// $uiRouter.plugin(Visualizer)
 	}]);
 	// .factory('socket', SocketFactory)
 

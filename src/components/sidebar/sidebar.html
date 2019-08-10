@@ -10,13 +10,13 @@
 				<div class="sidebar__row">
 					<label for="primaryColour">
 						Primary Colour
-						<input name="primaryColour" type="color" ng-model="vm.colours.primary" />
+						<input name="primaryColour" type="color" ng-model="vm.template.colours.primary" />
 					</label>
 				</div>
 				<div class="sidebar__row">
 					<label for="primaryColour">
 						Secondary Colour
-						<input name="secondaryColour" type="color" ng-model="vm.colours.secondary" />
+						<input name="secondaryColour" type="color" ng-model="vm.template.colours.secondary" />
 					</label>
 				</div>
 			</div>
@@ -25,16 +25,16 @@
 			<div class="sidebar__column">
 				<label class="checkbox">
 					Use Fogbugz
-					<input type="checkbox" ng-model="vm.fb.settings.useFogbugz" ng-click="vm.useFogbugzToggle(!vm.fb.settings.useFogbugz)" />
+					<input type="checkbox" ng-model="vm.template.fogbugz.useFogbugz" ng-click="vm.useFogbugzToggle(!vm.template.fogbugz.useFogbugz)" />
 					<span></span>
 				</label>
 			</div>
 			<hr>
-			<div ng-if="!vm.fb.settings.useFogbugz">
+			<div ng-if="!vm.template.fogbugz.useFogbugz">
 				<div class="sidebar__row">
 				</div>
 			</div>
-			<div ng-if="vm.fb.settings.useFogbugz" class="sidebar__column">
+			<div ng-if="vm.template.fogbugz.useFogbugz" class="sidebar__column">
 				<div class="sidebar__row">
 					<label for="project">
 						Project

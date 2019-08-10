@@ -1,3 +1,4 @@
+const { cloneDeep } = require('lodash');
 require('./page-canvas.scss');
 
 class PageCanvasController {
@@ -18,7 +19,6 @@ class PageCanvasController {
 		window.addEventListener('resize', (e) => {
 			if ($element[0]) {
 				this.height = $element[0].clientHeight;
-				console.log(this.height);
 			}
 
 			this.calculateSizes();
@@ -27,10 +27,9 @@ class PageCanvasController {
 		this.calculateSizes();
 	}
 
-	mapStateToThis({ canvas: canvasSettings, fogbugz: { useFogbugz } }) {
+	mapStateToThis({ templates: { templates, currentTemplate } }) {
 		return {
-			canvasSettings,
-			useFogbugz
+			currentTemplate: templates[currentTemplate]
 		}
 	}
 
@@ -47,6 +46,13 @@ class PageCanvasController {
 			}, 200);
 		}
 	}
+
+	$onInit() {
+		this.$scope.$watch(() => this.currentTemplate, () => {
+			this.template = cloneDeep(this.currentTemplate);
+		}, true);
+	}
+
 }
 
 

@@ -1,4 +1,5 @@
 const { getProjects } = require('actions/fogbugz');
+const { setCurrentTemplate } = require('actions/templates');
 
 class EditController {
 
@@ -7,18 +8,23 @@ class EditController {
 		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
 	}
 
-	mapStateToThis() {
-		return {}
+	mapStateToThis({ router: { toParams: { id } } }) {
+		return {
+			id
+		}
 	}
 
 	mapDispatchToThis(dispatch) {
 		return {
-			getProjects: () => dispatch(getProjects())
+			getProjects: () => dispatch(getProjects()),
+			setCurrentTemplate: id => dispatch(setCurrentTemplate(id))
 		}
 	}
 
 	$onInit() {
 		this.getProjects();
+
+		this.setCurrentTemplate(this.id || 'temp');
 	}
 
 }

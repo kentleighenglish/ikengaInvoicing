@@ -1,11 +1,13 @@
-const { useFogbugzToggle } = require('actions/fogbugz');
+const { cloneDeep, findIndex } = require('lodash');
+const { useFogbugzToggle, updateTemplate } = require('actions/templates');
 
 require('./sidebar.scss');
 
 class SidebarController {
 
 	constructor($scope, $ngRedux) {
-		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
+		this.$scope = $scope;
+		$ngRedux.connect(this.mapStateToThis, dispatch => this.mapDispatchToThis(dispatch, this))(this);
 
 		this.tabs = {
 			design: 'format_paint',
@@ -15,19 +17,33 @@ class SidebarController {
 		}
 	}
 
-	mapStateToThis({ fogbugz: fb, projects, canvas, router: { toParams: { tab = 'details' } } }) {
+	mapStateToThis({ fogbugz: { projects }, router: { toParams: { tab = 'details' } }, templates: { templates, currentTemplate } }) {
 		return {
-			fb,
-			projects: fb.projects,
-			colours: canvas.colours,
-			selectedProject: fb.projects[fb.selectedProject],
-			currentTab: tab
+			projects,
+			currentTab: tab,
+			currentTemplate: templates[currentTemplate]
 		}
 	}
 
-	mapDispatchToThis(dispatch) {
+	mapDispatchToThis(dispatch, props) {
 		return {
-			useFogbugzToggle: (value) => dispatch(useFogbugzToggle(value))
+			useFogbugzToggle: (value) => dispatch(useFogbugzToggle(value)),
+			updateTemplate: data => dispatch(updateTemplate(data))
+		}
+	}
+
+	$onInit() {
+		this.$scope.$watch(() => this.currentTemplate, () => {
+			this.template = cloneDeep(this.currentTemplate);
+
+			this.selectedProject = findIndex(this.projects, { name: this.template.details.project });
+		}, true);
+	}
+
+	changeProject() {
+		if (this.projects.length && this.selectedProject !== -1) {
+			const selected = this.projects[this.selectedProject];
+			this.updateTemplate({ details: { project: selected.name } })
 		}
 	}
 

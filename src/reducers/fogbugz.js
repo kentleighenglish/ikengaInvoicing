@@ -1,24 +1,15 @@
 const { cloneDeep } = require('lodash');
-const { types } = require('actions/fogbugz');
+const { actions } = require('actions/fogbugz');
 
 const INITIAL_STATE = {
 	projects: [],
-	items: [],
-	selectedProject: null,
-	settings: {
-		dateFrom: null,
-		dateTo: null,
-		useFogbugz: true
-	}
+	items: []
 }
 
-module.exports = (state = cloneDeep(INITIAL_STATE), action) => {
-	switch(action.type) {
-		case types.TOGGLE_FOGBUGZ:
-			state.settings.useFogbugz = action.payload ? action.payload : !state.settings.useFogbugz;
-		break;
-		case types.RECEIVE_PROJECTS:
-			state.projects = action.payload || [];
+module.exports = (state = cloneDeep(INITIAL_STATE), { type, payload }) => {
+	switch(type) {
+		case actions.RECEIVE_PROJECTS:
+			state.projects = payload || [];
 		break;
 	}
 
