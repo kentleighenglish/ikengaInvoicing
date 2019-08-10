@@ -1,0 +1,38 @@
+@import '_global.scss';
+
+template-list {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin-top: 150px;
+
+	.templateList {
+		width: 100%;
+		max-width: 1200px;
+		display: flex;
+
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		&__item {
+			width: 20%;
+			display: flex;
+			height: 150px;
+
+			font-size: 52px;
+			border: 1px solid $grey;
+			border-radius: 5px;
+
+			justify-content: center;
+			align-items: center;
+			color: $grey-light;
+
+			cursor: pointer;
+
+			&:hover {
+				border-color: $primary;
+				color: $primary;
+			}
+		}
+	}
+}

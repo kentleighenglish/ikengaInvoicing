@@ -8,9 +8,10 @@ class EditController {
 		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
 	}
 
-	mapStateToThis({ router: { toParams: { id } } }) {
+	mapStateToThis({ templates: { templates }, router: { toParams: { id } } }) {
 		return {
-			id
+			id,
+			templates
 		}
 	}
 
@@ -24,7 +25,9 @@ class EditController {
 	$onInit() {
 		this.getProjects();
 
-		this.setCurrentTemplate(this.id || 'temp');
+		if (!this.templates['temp']) {
+			this.setCurrentTemplate(this.id || 'temp');
+		}
 	}
 
 }

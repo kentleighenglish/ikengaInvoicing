@@ -7,6 +7,7 @@ createModule('ComponentsModule', [], {
 		'toolbar',
 		'sidebar',
 		'viewport',
-		'page-canvas'
+		'page-canvas',
+		'template-list'
 	]
 });

@@ -2,7 +2,6 @@
 class HomeController {
 
 	constructor($scope) {
-
 	}
 
 }
