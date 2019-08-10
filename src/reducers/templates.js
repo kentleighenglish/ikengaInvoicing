@@ -3,6 +3,7 @@ const { actions } = require('actions/templates');
 
 const INITIAL_STATE = {
 	defaultTemplate: {
+		name: 'Blank',
 		colours: {
 			primary: '#bc4227',
 			secondary: '#659e53'
@@ -27,7 +28,6 @@ module.exports = (state = cloneDeep(INITIAL_STATE), { type, payload }) => {
 			const { currentTemplate: id } = state;
 			const { template } = payload;
 
-			console.log(template);
 			state.templates[id] = state.templates[id] || {};
 			state.templates[id] = merge(state.templates[id], template);
 		break;

@@ -1,5 +1,5 @@
-const { cloneDeep, findIndex } = require('lodash');
-const { useFogbugzToggle, updateTemplate } = require('actions/templates');
+const { cloneDeep, findIndex, set, get } = require('lodash');
+const { updateTemplate } = require('actions/templates');
 
 require('./sidebar.scss');
 
@@ -15,6 +15,17 @@ class SidebarController {
 			items: 'insert_chart',
 			charges: 'attach_money'
 		}
+
+		this.fields = {
+			details: [
+				{
+					key: 'project',
+					placeholder: "Project Name",
+					fogbugz: false,
+					type: 'text'
+				}
+			]
+		}
 	}
 
 	mapStateToThis({ fogbugz: { projects }, router: { toParams: { tab = 'details' } }, templates: { templates, currentTemplate } }) {
@@ -27,7 +38,6 @@ class SidebarController {
 
 	mapDispatchToThis(dispatch, props) {
 		return {
-			useFogbugzToggle: (value) => dispatch(useFogbugzToggle(value)),
 			updateTemplate: data => dispatch(updateTemplate(data))
 		}
 	}
@@ -36,15 +46,23 @@ class SidebarController {
 		this.$scope.$watch(() => this.currentTemplate, () => {
 			this.template = cloneDeep(this.currentTemplate);
 
-			this.selectedProject = findIndex(this.projects, { name: this.template.details.project });
+			this.selectedProject = findIndex(this.projects, { id: this.template.fogbugz.selectedProject });
 		}, true);
 	}
 
 	changeProject() {
 		if (this.projects.length && this.selectedProject !== -1) {
 			const selected = this.projects[this.selectedProject];
-			this.updateTemplate({ details: { project: selected.name } })
+			this.updateTemplate({ fogbugz: { selectedProject: selected.id } })
 		}
+	}
+
+	updateField(key, group) {
+		const value = get(this.template[group], key);
+
+		this.updateTemplate({
+			[group]: set(this.template[group], key, value)
+		})
 	}
 
 }
