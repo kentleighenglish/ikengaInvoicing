@@ -1,13 +1,24 @@
+const { cloneDeep } = require('lodash');
+const { useFogbugzToggle } = require('actions/templates');
+
 require('./toolbar.scss');
 
 class ToolbarController {
-	
+
 	constructor($scope, $ngRedux) {
-		
+		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
 	}
-	
-	reset() {
-		
+
+	mapStateToThis({ templates: { templates, currentTemplate } }) {
+		return {
+			template: templates[currentTemplate]
+		}
+	}
+
+	mapDispatchToThis(dispatch) {
+		return {
+			useFogbugzToggle: value => dispatch(useFogbugzToggle(value))
+		}
 	}
 }
 

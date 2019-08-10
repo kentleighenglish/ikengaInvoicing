@@ -1,3 +1,8 @@
 <div class="toolbar">
+	<div class="flex">
+		<button ng-click="vm.useFogbugzToggle(!vm.template.fogbugz.useFogbugz)" class="toggle" ng-class="{ 'active': vm.template.fogbugz.useFogbugz }">
+			{{ !vm.template.fogbugz.useFogbugz ? 'Enable' : 'Disable' }} FogBugz
+		</button>
+	</div>
 	<button ng-click="vm.reset()">Reset</button>
 </div>
