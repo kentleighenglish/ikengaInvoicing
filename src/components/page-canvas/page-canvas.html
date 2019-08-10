@@ -1,15 +1,15 @@
 <div class="canvas" ng-style="{ width: vm.width+'px', fontSize: vm.fontSize+'em' }">
-	<div class="canvas__headerBar" ng-style="{ background: vm.template.colours.primary }"></div>
+	<div class="canvas__headerBar" ng-style="{ background: vm.t.colours.primary }"></div>
 	<div class="canvas__body">
-		<div class="canvas__header" ng-style="{ color: vm.template.colours.secondary }"><h1>Ikenga Innovations Ltd</h2></div>
+		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1>Ikenga Innovations Ltd</h2></div>
 		<div class="canvas__address">
 			Flat 2, 19 New Street<br>
 			Bedworth, CV12 9DL<br>
 			<i>invoicing@ikengainnovations.com</i><br>
 			<i>07495074144</i>
 		</div>
-		<div class="canvas__subHeader" ng-style="{ color: vm.template.colours.primary }"><h2>Invoice</h2></div>
-		<div class="canvas__submitted" ng-style="{ color: vm.template.colours.secondary }">Submitted on: 06/07/18</div>
+		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
+		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: 06/07/18</div>
 		<div class="canvas__details">
 			<table>
 				<tr>
@@ -32,7 +32,7 @@
 				<tr>
 					<td>
 						<b>Project</b>
-						<p>{{vm.template.details.project}}</p>
+						<p>{{ vm.fb ? vm.project.name : vm.t.details.project }}</p>
 					</td>
 					<td>
 						<b>Due date</b>
@@ -44,7 +44,7 @@
 		<hr>
 		<div class="canvas__items">
 			<table>
-				<tr ng-style="{ color: vm.template.colours.primary }">
+				<tr ng-style="{ color: vm.t.colours.primary }">
 					<th>Description</th>
 					<th>Qty</th>
 					<th>Unit Price</th>
@@ -60,7 +60,7 @@
 		</div>
 		<div class="canvas__row">
 			<div class="canvas__bankDetails">
-				<h2 ng-style="{ color: vm.template.colours.secondary }">Bank Details</h2>
+				<h2 ng-style="{ color: vm.t.colours.secondary }">Bank Details</h2>
 				<table>
 					<tr>
 						<td>Bank Name</td>
@@ -83,15 +83,15 @@
 			<div class="canvas__total">
 				<table>
 					<tr>
-						<td class="label" ng-style="{ color: vm.template.colours.primary }">Subtotal</td>
+						<td class="label" ng-style="{ color: vm.t.colours.primary }">Subtotal</td>
 						<td><b>&pound;216.67</b></td>
 					</tr>
 					<tr>
-						<td class="label" ng-style="{ color: vm.template.colours.primary }">VAT</td>
+						<td class="label" ng-style="{ color: vm.t.colours.primary }">VAT</td>
 						<td><b>&pound;43.33</b></td>
 					</tr>
 				</table>
-				<h2 ng-style="{ color: vm.template.colours.secondary }">&pound;260.00</h2>
+				<h2 ng-style="{ color: vm.t.colours.secondary }">&pound;260.00</h2>
 			</div>
 		</div>
 	</div>

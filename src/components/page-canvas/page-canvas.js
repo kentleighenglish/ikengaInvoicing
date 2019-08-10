@@ -1,4 +1,4 @@
-const { cloneDeep } = require('lodash');
+const { cloneDeep, find } = require('lodash');
 require('./page-canvas.scss');
 
 class PageCanvasController {
@@ -27,9 +27,15 @@ class PageCanvasController {
 		this.calculateSizes();
 	}
 
-	mapStateToThis({ templates: { templates, currentTemplate } }) {
+	mapStateToThis({ fogbugz: { projects }, templates: { templates, currentTemplate } }) {
+		const template = templates[currentTemplate];
+		const projectId = template['fogbugz']['selectedProject'] || null;
+
 		return {
-			currentTemplate: templates[currentTemplate]
+			fb: template['fogbugz']['useFogbugz'],
+			project: projectId ? find(projects, { id: projectId }) : {},
+			t: template
+
 		}
 	}
 
@@ -45,12 +51,6 @@ class PageCanvasController {
 				this.$scope.$apply();
 			}, 200);
 		}
-	}
-
-	$onInit() {
-		this.$scope.$watch(() => this.currentTemplate, () => {
-			this.template = cloneDeep(this.currentTemplate);
-		}, true);
 	}
 
 }
