@@ -62,9 +62,17 @@ input {
 	font-family: $font-family-default;
 
 	background: $grey-dark;
-	border: 1px solid $primary;
+	border: 1px solid $grey;
 	border-radius: 3px;
-	color: white;
+	color: $grey-light;
+
+	transition: border-color .1s, color .1s;
+
+	&:focus {
+		border-color: $primary;
+		color: white;
+		outline: none;
+	}
 
 	&[type="color"] {
 		padding: 0;

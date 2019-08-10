@@ -7,7 +7,7 @@
 
 *, ::before, ::after {
 	box-sizing: border-box;
-	
+
 }
 
 ::selection {
@@ -24,10 +24,10 @@ html, body {
 body {
 	margin: 0;
 	background: $grey-dark;
-	
+
 	font-size: $font-size-default;
 	font-family: $font-family-default;
-	
+
 }
 
 hr {
@@ -46,7 +46,7 @@ hr {
 	display: flex;
 	width: 100%;
 	height: 100%;
-	
+
 	flex-direction: column;
 }
 
@@ -54,17 +54,28 @@ hr {
 button {
 	border: 0;
 	background: initial;
-	
+
 	color: $primary;
 	padding: ($gap / 2) $gap;
-	
+
 	&:hover {
 		cursor: pointer;
 		background: $grey;
 	}
-	
+
 	&:active, &:focus {
 		outline: none;
+	}
+
+	&.toggle {
+
+		&.active {
+			background: darken($grey, 3%);
+
+			&:hover {
+				background: $grey;
+			}
+		}
 	}
 }
 
