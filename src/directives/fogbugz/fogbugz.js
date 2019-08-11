@@ -29,7 +29,7 @@ module.exports = [() => {
 		link: function($scope, $element, attrs, ctrl) {
 
 			$scope.$watch(() => ctrl.template['fogbugz']['useFogbugz'], val => {
-				const showOnFb = ctrl.fogbugz !== undefined ? ctrl.fogbugz : true;
+				const showOnFb = ctrl.fogbugz;
 
 				if (showOnFb === true || showOnFb === false) {
 					const hide = ( (showOnFb && !val) || (!showOnFb && val) );
