@@ -23,18 +23,9 @@
 		</div>
 		<div ng-switch-when="details" class="flex flex--column">
 			<div class="sidebar__column">
-				<div class="sidebar__row" fogbugz="true">
-					<label for="project">
-						Project
-						<select name="project" ng-model="vm.selectedProject" ng-change="vm.changeProject()">
-							<option ng-repeat="p in vm.projects" ng-value="$index">{{ p.name }}</option>
-						</select>
-					</label>
-				</div>
 				<div ng-repeat="i in vm.fields.details" class="sidebar__row">
-					<input ng-if="i.type !== 'select'" name="details.{{i.key}}" placeholder="{{ i.placeholder }}" fogbugz="i.fogbugz" ng-model="vm.template['details'][i.key]" ng-change="vm.updateField(i.key, 'details')" />
-					<select ng-if="i.type === 'select'">
-					</select>
+					<dynamic-input field="i" on-change="vm.updateField(field)" fogbugz="i.fogbugz"></dynamic-input>
+					<dynamic-input ng-if="i.fogbugz === false && i.fogbugzField" field="i.fogbugzField" on-change="vm.updateField(field)" fogbugz="true"></dynamic-input>
 				</div>
 			</div>
 		</div>

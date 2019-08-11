@@ -1,4 +1,4 @@
-const { cloneDeep, findIndex, set, get } = require('lodash');
+const { cloneDeep, findIndex, reduce, set, get } = require('lodash');
 const { updateTemplate } = require('actions/templates');
 
 require('./sidebar.scss');
@@ -15,24 +15,15 @@ class SidebarController {
 			items: 'insert_chart',
 			charges: 'attach_money'
 		}
-
-		this.fields = {
-			details: [
-				{
-					key: 'project',
-					placeholder: "Project Name",
-					fogbugz: false,
-					type: 'text'
-				}
-			]
-		}
 	}
 
 	mapStateToThis({ fogbugz: { projects }, router: { toParams: { tab = 'details' } }, templates: { templates, currentTemplate } }) {
+		const template = templates[currentTemplate];
+
 		return {
 			projects,
 			currentTab: tab,
-			currentTemplate: templates[currentTemplate]
+			currentTemplate: template
 		}
 	}
 
@@ -43,26 +34,49 @@ class SidebarController {
 	}
 
 	$onInit() {
-		this.$scope.$watch(() => this.currentTemplate, () => {
-			this.template = cloneDeep(this.currentTemplate);
+		this.template = cloneDeep(this.currentTemplate);
 
-			this.selectedProject = findIndex(this.projects, { id: this.template.fogbugz.selectedProject });
-		}, true);
+		this.fields = reduce({
+			details: [
+				{
+					key: "details.companyName",
+					label: "Company Name",
+					type: "text"
+				},
+				{
+					key: "details.project",
+					label: "Project Name",
+					fogbugz: false,
+					type: "text",
+					fogbugzField: {
+						key: "fogbugz.selectedProject",
+						label: "Project",
+						type: "select",
+						options: () => this.projects.map((p, i) => ({
+							label: p.name,
+							value: p.id
+						}))
+					}
+				}
+			]
+		}, (obj, fields, group) => ({
+			...obj,
+			[group]: fields.reduce((arr, field) => ([
+				...arr,
+				{
+					...field,
+					value: get(this.template, field.key),
+					fogbugzField: field.fogbugzField ? {
+						...field.fogbugzField,
+						value: get(this.template, field.fogbugzField.key)
+					} : null
+				}
+			]), [])
+		}), {});
 	}
 
-	changeProject() {
-		if (this.projects.length && this.selectedProject !== -1) {
-			const selected = this.projects[this.selectedProject];
-			this.updateTemplate({ fogbugz: { selectedProject: selected.id } })
-		}
-	}
-
-	updateField(key, group) {
-		const value = get(this.template[group], key);
-
-		this.updateTemplate({
-			[group]: set(this.template[group], key, value)
-		})
+	updateField({ key, value }) {
+		this.updateTemplate(set({}, key, value));
 	}
 
 }
