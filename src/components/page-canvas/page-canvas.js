@@ -33,7 +33,7 @@ class PageCanvasController {
 
 		return {
 			fb: template['fogbugz']['useFogbugz'],
-			project: projectId ? find(projects, { id: projectId }) : {},
+			project: projectId ? find(projects, { id: parseInt(projectId) }) : {},
 			t: template
 
 		}
