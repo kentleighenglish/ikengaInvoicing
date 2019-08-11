@@ -8,6 +8,7 @@ createModule('ComponentsModule', [], {
 		'sidebar',
 		'viewport',
 		'page-canvas',
-		'template-list'
+		'template-list',
+		'dynamic-input'
 	]
 });

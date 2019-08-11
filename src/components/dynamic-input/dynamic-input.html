@@ -1,0 +1,7 @@
+<label for="{{vm.field.key}}">
+	{{ vm.field.label }}
+	<input ng-if="vm.field.type !== 'select'" name="{{vm.field.key}}" placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label }}" ng-model="vm.field.value" ng-change="vm.onChange({ field: vm.field })" />
+	<select ng-if="vm.field.type === 'select'" name="{{vm.field.key}}" placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label}}" ng-model="vm.field.value" ng-change="vm.onChange({ field: vm.field })">
+		<option ng-repeat="o in vm.options" ng-value="o.value">{{o.label}}</option>
+	</select>
+</label>
