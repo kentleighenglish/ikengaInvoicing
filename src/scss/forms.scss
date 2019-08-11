@@ -4,6 +4,7 @@ label {
 	display: block;
 	width: 100%;
 	color: $primary;
+	font-size: 12px;
 
 	&.checkbox {
 		display: flex;
@@ -53,14 +54,13 @@ label {
 	}
 }
 
-input {
+input, select {
 	display: block;
 	width: 100%;
 	margin: ($gap /2) 0;
 	padding: ($gap / 2);
 	font-size: $font-size-default;
 	font-family: $font-family-default;
-
 	background: $grey-dark;
 	border: 1px solid $grey;
 	border-radius: 3px;
@@ -73,6 +73,9 @@ input {
 		color: white;
 		outline: none;
 	}
+}
+
+input {
 
 	&[type="color"] {
 		padding: 0;
@@ -86,25 +89,8 @@ input {
 }
 
 select {
-	display: block;
-	width: 100%;
-	margin: ($gap /2) 0;
-	padding: ($gap / 2);
-	font-size: $font-size-default;
-	font-family: $font-family-default;
-
-	background: $grey-dark;
-	border: 1px solid $primary;
-	border-radius: 3px;
-	color: white;
-
-	&:active, &:focus {
-		outline: none;
-	}
-
-
 	option {
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	&:value {
