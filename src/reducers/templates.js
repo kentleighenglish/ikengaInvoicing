@@ -15,7 +15,8 @@ const INITIAL_STATE = {
 			dateTo: null,
 		},
 		details: {
-			project: 'Project Example'
+			companyName: "Ikenga Innovations Ltd",
+			project: "Project Example"
 		}
 	},
 	templates: {},
