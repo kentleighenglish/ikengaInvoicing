@@ -4,20 +4,18 @@
 		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1 canvas-field="details.companyName"></h1></div>
 		<div class="canvas__address">
 			<span canvas-field="details.companyAddress"></span><br>
-			<i canvas-field="details.companyEmail">invoicing@ikengainnovations.com</i><br>
-			<i canvas-field="details.companyNumber">07495074144</i>
+			<i canvas-field="details.companyEmail"></i><br>
+			<i canvas-field="details.companyNumber"></i>
 		</div>
 		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
-		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: 06/07/18</div>
+		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: <span canvas-field="details.submittedDate"></span></div>
 		<div class="canvas__details">
 			<table>
 				<tr>
 					<td rowspan="2">
 						<b>Invoice for</b>
-						<p>Amer Siddiq<br>
-						Locumhive Limited<br>
-						Kemp House, 15 City Road<br>
-						London, EC1V 2NX</p>
+						<p canvas-field="details.recipientName"></p>
+						<p canvas-field="details.recipientAddress"></p>
 					</td>
 					<td>
 						<b>Payable to</b>

@@ -17,7 +17,12 @@ const INITIAL_STATE = {
 		details: {
 			companyName: "Ikenga Innovations Ltd",
 			companyAddress: "Flat 2, 19 New Street\nBedworth, CV12 9DL",
-			project: "Project Example"
+			companyEmail: "invoicing@ikengainnovations.com",
+			companyNumber: "07495074144",
+			submittedDate: "06/07/18",
+			project: "Project Example",
+			recipientName: "Amer Siddiq",
+			recipientAddress: "Locumhive Limited\nKemp House, 15 City Road\nLondon, EC1V 2NX"
 		}
 	},
 	templates: {},
