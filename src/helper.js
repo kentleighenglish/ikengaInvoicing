@@ -2,7 +2,7 @@ const angular = require('angular');
 
 const createModule = (name, bootstrap = [], options = {}) => {
 	const m = angular.module(name, bootstrap);
-	const { components, directives, controllers, pathPrefix = 'src/' } = options;
+	const { components, directives, filters, controllers, pathPrefix = 'src/' } = options;
 
 	if (components) {
 		components.map(
@@ -12,6 +12,11 @@ const createModule = (name, bootstrap = [], options = {}) => {
 	if (directives) {
 		directives.map(
 			n => m.directive(kebabToCamelCase(n), require(`${pathPrefix}${n}/${n}`))
+		);
+	}
+	if (filters) {
+		filters.map(
+			n => m.filter(kebabToCamelCase(n), require(`${pathPrefix}${n}/${n}`))
 		);
 	}
 	if (controllers) {
