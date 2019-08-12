@@ -54,7 +54,7 @@ label {
 	}
 }
 
-input, select {
+input, select, textarea {
 	display: block;
 	height: 22px + $gap;
 	width: 100%;
@@ -97,4 +97,10 @@ select {
 	&:value {
 		opacity: .2;
 	}
+}
+
+textarea {
+	max-width: 100%;
+	min-width: 100%;
+	height: initial;
 }
