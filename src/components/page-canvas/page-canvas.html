@@ -1,12 +1,11 @@
 <div class="canvas" ng-style="{ width: vm.width+'px', fontSize: vm.fontSize+'em' }">
 	<div class="canvas__headerBar" ng-style="{ background: vm.t.colours.primary }"></div>
 	<div class="canvas__body">
-		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1>{{ vm.t.details.companyName }}</h2></div>
+		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1 canvas-field="details.companyName"></h1></div>
 		<div class="canvas__address">
-			Flat 2, 19 New Street<br>
-			Bedworth, CV12 9DL<br>
-			<i>invoicing@ikengainnovations.com</i><br>
-			<i>07495074144</i>
+			<span canvas-field="details.companyAddress"></span><br>
+			<i canvas-field="details.companyEmail">invoicing@ikengainnovations.com</i><br>
+			<i canvas-field="details.companyNumber">07495074144</i>
 		</div>
 		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
 		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: 06/07/18</div>

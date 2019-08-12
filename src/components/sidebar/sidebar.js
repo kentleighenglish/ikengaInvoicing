@@ -56,6 +56,16 @@ class SidebarController {
 					type: "text"
 				},
 				{
+					key: "details.companyAddress",
+					label: "Company Address",
+					type: "textarea"
+				},
+				{
+					key: "details.companyEmail",
+					label: "Company Email",
+					type: "text"
+				},
+				{
 					key: "details.project",
 					label: "Project Name",
 					fogbugz: false,

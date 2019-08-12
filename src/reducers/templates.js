@@ -16,6 +16,7 @@ const INITIAL_STATE = {
 		},
 		details: {
 			companyName: "Ikenga Innovations Ltd",
+			companyAddress: "Flat 2, 19 New Street\nBedworth, CV12 9DL",
 			project: "Project Example"
 		}
 	},
