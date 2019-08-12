@@ -37,6 +37,18 @@ class SidebarController {
 		this.template = cloneDeep(this.currentTemplate);
 
 		this.fields = reduce({
+			design: [
+				{
+					key: "colours.primary",
+					label: "Primary Colour",
+					type: "color"
+				},
+				{
+					key: "colours.secondary",
+					label: "Secondary Colour",
+					type: "color"
+				},
+			],
 			details: [
 				{
 					key: "details.companyName",
@@ -58,6 +70,23 @@ class SidebarController {
 						}))
 					}
 				}
+			],
+			items: [
+				{
+					key: "fogbugz.dateFrom",
+					label: "Timeshet From",
+					type: "date",
+					fogbugz: true
+				},
+				{
+					key: "fogbugz.dateTo",
+					label: "Timesheet To",
+					type: "date",
+					fogbugz: true
+				},
+			],
+			charges: [
+
 			]
 		}, (obj, fields, group) => ({
 			...obj,

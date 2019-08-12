@@ -4,51 +4,12 @@
 			<span class="icon">{{icon}}</span>
 		</a>
 	</div>
-	<div ng-switch="vm.currentTab" class="flex">
-		<div ng-switch-when="design" class="flex flex--column">
+	<div class="flex">
+		<div ng-repeat="(key, fields) in vm.fields" ng-if="vm.currentTab === key" class="flex flex--column">
 			<div class="sidebar__column">
-				<div class="sidebar__row">
-					<label for="primaryColour">
-						Primary Colour
-						<input name="primaryColour" type="color" ng-model="vm.template.colours.primary" />
-					</label>
-				</div>
-				<div class="sidebar__row">
-					<label for="primaryColour">
-						Secondary Colour
-						<input name="secondaryColour" type="color" ng-model="vm.template.colours.secondary" />
-					</label>
-				</div>
-			</div>
-		</div>
-		<div ng-switch-when="details" class="flex flex--column">
-			<div class="sidebar__column">
-				<div ng-repeat="i in vm.fields.details" class="sidebar__row">
+				<div ng-repeat="i in fields" class="sidebar__row">
 					<dynamic-input field="i" on-change="vm.updateField(field)" fogbugz="i.fogbugz"></dynamic-input>
 					<dynamic-input ng-if="i.fogbugz === false && i.fogbugzField" field="i.fogbugzField" on-change="vm.updateField(field)" fogbugz="true"></dynamic-input>
-				</div>
-			</div>
-		</div>
-		<div ng-switch-when="items" class="flex flex--column">
-			<div ng-if="!vm.template.fogbugz.useFogbugz">
-				<div class="sidebar__row">
-				</div>
-			</div>
-			<div ng-if="vm.template.fogbugz.useFogbugz" class="sidebar__column">
-				<hr>
-				<div class="sidebar__column">
-					<div class="sidebar__row">
-						<label for="dateFrom">
-							Timesheet From:
-							<input type="date" ng-model="vm.fb.settings.dateFrom" ng-disabled="!vm.fb.settings.useFogbugz" />
-						</label>
-					</div>
-					<div class="sidebar__row">
-						<label for="dateTo">
-							Timesheet To:
-							<input type="date" ng-model="vm.fb.settings.dateTo" ng-disabled="!vm.fb.settings.useFogbugz" />
-						</label>
-					</div>
 				</div>
 			</div>
 		</div>
