@@ -56,6 +56,7 @@ label {
 
 input, select {
 	display: block;
+	height: 22px + $gap;
 	width: 100%;
 	margin: ($gap /2) 0;
 	padding: ($gap / 2);
