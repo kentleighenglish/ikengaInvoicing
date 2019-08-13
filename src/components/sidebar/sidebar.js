@@ -10,10 +10,10 @@ class SidebarController {
 		$ngRedux.connect(this.mapStateToThis, dispatch => this.mapDispatchToThis(dispatch, this))(this);
 
 		this.tabs = {
-			design: 'format_paint',
-			details: 'assignment',
-			items: 'insert_chart',
-			charges: 'attach_money'
+			company: 'business',
+			invoice: 'inbox',
+			items: 'list',
+			charges: 'credit_card'
 		}
 	}
 
@@ -36,8 +36,46 @@ class SidebarController {
 	$onInit() {
 		this.template = cloneDeep(this.currentTemplate);
 
+		this.items = [0];
+
 		this.fields = reduce({
-			design: [
+			company: [
+				{
+					key: "details.company.name",
+					label: "Company Name",
+					type: "text"
+				},
+				{
+					key: "details.company.address",
+					label: "Company Address",
+					type: "textarea"
+				},
+				{
+					key: "details.company.email",
+					label: "Company Email",
+					type: "text"
+				},
+				{
+					key: "details.companyBank.name",
+					label: "Bank Name",
+					type: "text"
+				},
+				{
+					key: "details.companyBank.accName",
+					label: "Bank Account Name",
+					type: "text"
+				},
+				{
+					key: "details.companyBank.accNumber",
+					label: "Bank Account Number",
+					type: "text"
+				},
+				{
+					key: "details.companyBank.sortCode",
+					label: "Bank Account Sort Code",
+					type: "text",
+					breakAfter: true
+				},
 				{
 					key: "colours.primary",
 					label: "Primary Colour",
@@ -47,29 +85,27 @@ class SidebarController {
 					key: "colours.secondary",
 					label: "Secondary Colour",
 					type: "color"
-				},
+				}
 			],
-			details: [
+			invoice: [
 				{
-					key: "details.companyName",
-					label: "Company Name",
+					key: "details.recipient.name",
+					label: "Recipient Name",
 					type: "text"
 				},
 				{
-					key: "details.companyAddress",
-					label: "Company Address",
+					key: "details.recipient.address",
+					label: "Recipient Address",
 					type: "textarea"
-				},
-				{
-					key: "details.companyEmail",
-					label: "Company Email",
-					type: "text"
-				},
+				}
+			],
+			items: [
 				{
 					key: "details.project",
 					label: "Project Name",
 					fogbugz: false,
 					type: "text",
+					breakAfter: true,
 					fogbugzField: {
 						key: "fogbugz.selectedProject",
 						label: "Project",
@@ -79,9 +115,7 @@ class SidebarController {
 							value: p.id
 						}))
 					}
-				}
-			],
-			items: [
+				},
 				{
 					key: "fogbugz.dateFrom",
 					label: "Timeshet From",
@@ -94,9 +128,42 @@ class SidebarController {
 					type: "date",
 					fogbugz: true
 				},
+				...reduce(this.template.lineItems, (arr, lineItem, i) => ([
+					...arr,
+					{
+						key: `lineItems[${i}].label`,
+						label: `Line Item ${i+1} Label`,
+						type: "text",
+						fogbugz: false,
+					},
+					{
+						key: `lineItems[${i}].quantity`,
+						label: `Line Item ${i+1} Quantity`,
+						type: "number",
+						fogbugz: false,
+					},
+					{
+						key: `lineItems[${i}].unitPrice`,
+						label: `Line Item ${i+1} Unit Price`,
+						type: "number",
+						fogbugz: false,
+						breakAfter: true,
+						buttons: (this.template.lineItems.length === (i+1)) ? [
+						] : null
+					}
+				]), [])
 			],
 			charges: [
-
+				{
+					key: "fogbugz.hourlyRate",
+					label: "Hourly Rate",
+					type: "number"
+				},
+				{
+					key: "fogbugz.dailyRate",
+					label: "Daily Rate",
+					type: "number"
+				}
 			]
 		}, (obj, fields, group) => ({
 			...obj,

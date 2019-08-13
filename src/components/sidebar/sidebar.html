@@ -8,8 +8,15 @@
 		<div ng-repeat="(key, fields) in vm.fields" ng-if="vm.currentTab === key" class="flex flex--column">
 			<div class="sidebar__column">
 				<div ng-repeat="i in fields" class="sidebar__row">
-					<dynamic-input field="i" on-change="vm.updateField(field)" fogbugz="i.fogbugz"></dynamic-input>
-					<dynamic-input ng-if="i.fogbugz === false && i.fogbugzField" field="i.fogbugzField" on-change="vm.updateField(field)" fogbugz="true"></dynamic-input>
+					<div class="flex flex--column">
+						<dynamic-input field="i" on-change="vm.updateField(field)" fogbugz="i.fogbugz"></dynamic-input>
+						<dynamic-input ng-if="i.fogbugz === false && i.fogbugzField" field="i.fogbugzField" on-change="vm.updateField(field)" fogbugz="true"></dynamic-input>
+						<div ng-if="i.buttons" class="flex">
+							<div ng-repeat="b in i.buttons">
+							</div>
+						</div>
+						<hr ng-if="i.breakAfter === true" />
+					</div>
 				</div>
 			</div>
 		</div>

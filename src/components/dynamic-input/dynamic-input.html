@@ -8,7 +8,14 @@
 		ng-model="vm.field.value"
 		ng-change="vm.onChange({ field: vm.field })"
 	/>
-	<textarea ng-if="vm.field.type === 'textarea'" name="{{vm.field.key}}" placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label}}" ng-model="vm.field.value" ng-change="vm.onChange({ field: vm.field })">
+	<textarea
+		ng-if="vm.field.type === 'textarea'"
+		name="{{vm.field.key}}"
+		placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label}}"
+		ng-model="vm.field.value"
+		ng-change="vm.onChange({ field: vm.field })"
+		ng-style="{ height: vm.dynamicHeight }"
+	>
 	</textarea>
 	<select ng-if="vm.field.type === 'select'" name="{{vm.field.key}}" placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label}}" ng-model="vm.field.value" ng-change="vm.onChange({ field: vm.field })">
 		<option ng-repeat="o in vm.options" ng-value="o.value">{{o.label}}</option>

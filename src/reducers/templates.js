@@ -13,17 +13,38 @@ const INITIAL_STATE = {
 			selectedProject: null,
 			dateFrom: null,
 			dateTo: null,
+			hourlyRate: 0,
+			dailyRate: 0,
+			useDailyRate: false
 		},
 		details: {
-			companyName: "Ikenga Innovations Ltd",
-			companyAddress: "Flat 2, 19 New Street\nBedworth, CV12 9DL",
-			companyEmail: "invoicing@ikengainnovations.com",
-			companyNumber: "07495074144",
+			company: {
+				name: "Ikenga Innovations Ltd",
+				address: "Flat 2, 19 New Street\nBedworth, CV12 9DL",
+				email: "invoicing@ikengainnovations.com",
+				number: "07495074144"
+			},
+			companyBank: {
+				name: 'HSBC Bank Plc',
+				accName: 'Ikenga Innovations Ltd',
+				accNumber: '1452152',
+				sortCode: '40-18-17'
+			},
+			recipient: {
+				name: "Amer Siddiq",
+				address: "Locumhive Limited\nKemp House, 15 City Road\nLondon, EC1V 2NX"
+
+			},
 			submittedDate: "06/07/18",
 			project: "Project Example",
-			recipientName: "Amer Siddiq",
-			recipientAddress: "Locumhive Limited\nKemp House, 15 City Road\nLondon, EC1V 2NX"
-		}
+		},
+		lineItems: [
+			{
+				label: "Line Item 1",
+				quantity: 1,
+				unitPrice: 0
+			}
+		]
 	},
 	templates: {},
 	currentTemplate: null

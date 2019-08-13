@@ -1,11 +1,11 @@
 <div class="canvas" ng-style="{ width: vm.width+'px', fontSize: vm.fontSize+'em' }">
 	<div class="canvas__headerBar" ng-style="{ background: vm.t.colours.primary }"></div>
 	<div class="canvas__body">
-		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1 canvas-field="details.companyName"></h1></div>
+		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1 canvas-field="details.company.name"></h1></div>
 		<div class="canvas__address">
-			<span canvas-field="details.companyAddress"></span><br>
-			<i canvas-field="details.companyEmail"></i><br>
-			<i canvas-field="details.companyNumber"></i>
+			<span canvas-field="details.company.address"></span><br>
+			<i canvas-field="details.company.email"></i><br>
+			<i canvas-field="details.company.number"></i>
 		</div>
 		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
 		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: <span canvas-field="details.submittedDate"></span></div>
@@ -14,8 +14,8 @@
 				<tr>
 					<td rowspan="2">
 						<b>Invoice for</b>
-						<p canvas-field="details.recipientName"></p>
-						<p canvas-field="details.recipientAddress"></p>
+						<p canvas-field="details.recipient.name"></p>
+						<p canvas-field="details.recipient.address"></p>
 					</td>
 					<td>
 						<b>Payable to</b>
@@ -29,7 +29,7 @@
 				<tr>
 					<td>
 						<b>Project</b>
-						<p>{{ vm.fb ? vm.project.name : vm.t.details.project }}</p>
+						<p canvas-field="{{ vm.fb ? 'project.name' : 'details.project' }}"></p>
 					</td>
 					<td>
 						<b>Due date</b>
@@ -61,19 +61,19 @@
 				<table>
 					<tr>
 						<td>Bank Name</td>
-						<td>HSBC Bank Plc</td>
+						<td canvas-field="details.companyBank.name">HSBC Bank Plc</td>
 					</tr>
 					<tr>
 						<td>Account Name</td>
-						<td>Ikenga Innovations Ltd</td>
+						<td canvas-field="details.companyBank.accName">Ikenga Innovations Ltd</td>
 					</tr>
 					<tr>
 						<td>Account Number</td>
-						<td>1452152</td>
+						<td canvas-field="details.companyBank.accNumber">1452152</td>
 					</tr>
 					<tr>
 						<td>Sort Code</td>
-						<td>40-18-17</td>
+						<td canvas-field="details.companyBank.sortCode">40-18-17</td>
 					</tr>
 				</table>
 			</div>

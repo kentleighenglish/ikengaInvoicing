@@ -29,11 +29,9 @@ class PageCanvasController {
 
 	mapStateToThis({ fogbugz: { projects }, templates: { templates, currentTemplate } }) {
 		const template = templates[currentTemplate];
-		const projectId = template['fogbugz']['selectedProject'] || null;
 
 		return {
 			fb: template['fogbugz']['useFogbugz'],
-			project: projectId ? find(projects, { id: parseInt(projectId) }) : {},
 			t: template
 
 		}

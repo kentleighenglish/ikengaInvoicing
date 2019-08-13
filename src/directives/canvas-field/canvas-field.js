@@ -1,20 +1,26 @@
-const { get } = require('lodash');
+const { get, find } = require('lodash');
 
 class CanvasFieldController {
 
 	constructor($scope, $ngRedux, $filter) {
 		this.$filter = $filter;
 
-		$ngRedux.connect(state =>this.mapStateToThis(state, this))(this);
+		$ngRedux.connect(this.mapStateToThis)(this);
 	}
 
 	$onInit()
 	{
 	}
 
-	mapStateToThis({ templates: { templates, currentTemplate } }, props) {
+	mapStateToThis({ fogbugz: { projects }, templates: { templates, currentTemplate } }) {
+		const template = templates[currentTemplate];
+		const projectId = template['fogbugz']['selectedProject'] || null;
+
 		return {
-			fieldValue: props.canvasField ? get(templates[currentTemplate], props.canvasField) : null
+			template: {
+				...template,
+				project: projectId ? find(projects, { id: parseInt(projectId) }) : {}
+			}
 		}
 	}
 
@@ -28,12 +34,11 @@ module.exports = [() => {
 		restrict: 'A',
 		controller: [ '$scope', '$ngRedux', '$filter', CanvasFieldController ],
 		link: function($scope, $element, attrs, ctrl) {
-
-			$scope.$watch(() => ctrl.fieldValue, val => {
-				const value = ctrl.$filter('nl2br')(ctrl.fieldValue || '');
+			$scope.$watch(() => ctrl.canvasField ? get(ctrl.template, ctrl.canvasField, null) : null, val => {
+				const value = ctrl.$filter('nl2br')(val || '');
 
 				$element.html(value);
-			})
+			}, true)
 		}
 	}
 }];

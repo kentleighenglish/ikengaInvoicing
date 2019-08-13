@@ -74,6 +74,10 @@ input, select, textarea {
 		color: white;
 		outline: none;
 	}
+
+	&::placeholder {
+		color: $grey;
+	}
 }
 
 input {
