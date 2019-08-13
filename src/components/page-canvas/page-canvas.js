@@ -30,10 +30,30 @@ class PageCanvasController {
 	mapStateToThis({ fogbugz: { projects }, templates: { templates, currentTemplate } }) {
 		const template = templates[currentTemplate];
 
+		let lineItems = [];
+		if (template['fogbugz']['useFogbugz']) {
+
+		} else {
+			lineItems = template.lineItems.reduce((arr, item) => ([
+				...arr,
+				{
+					...item,
+					totalPrice: (item.quantity * item.unitPrice),
+				}
+			]), []);
+		}
+
+		const subTotal = lineItems.reduce((out, i) => out + i.totalPrice, 0);
+
+		const vat = (subTotal * .2);
+
 		return {
 			fb: template['fogbugz']['useFogbugz'],
-			t: template
-
+			t: template,
+			lineItems,
+			subTotal,
+			vat,
+			grandTotal: subTotal + vat
 		}
 	}
 

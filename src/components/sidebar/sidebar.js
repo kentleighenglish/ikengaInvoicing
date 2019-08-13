@@ -56,6 +56,11 @@ class SidebarController {
 					type: "text"
 				},
 				{
+					key: "details.company.number",
+					label: "Company Number",
+					type: "text"
+				},
+				{
 					key: "details.companyBank.name",
 					label: "Bank Name",
 					type: "text"
@@ -97,6 +102,11 @@ class SidebarController {
 					key: "details.recipient.address",
 					label: "Recipient Address",
 					type: "textarea"
+				},
+				{
+					key: "details.submittedDate",
+					label: "Submitted Date",
+					type: "date"
 				}
 			],
 			items: [

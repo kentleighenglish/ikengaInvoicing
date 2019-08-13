@@ -21,11 +21,9 @@ class DynamicInputController {
 	updateDynamicHeight() {
 		const newlines = this.field.value.split("\n").length;
 
-		console.log(this.field.value);
 		if (newlines) {
 			const height = (newlines * 22) + 18 + 'px';
 
-			console.log(height);
 			this.dynamicHeight = height;
 		}
 	}

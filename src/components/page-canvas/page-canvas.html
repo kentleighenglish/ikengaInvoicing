@@ -8,7 +8,7 @@
 			<i canvas-field="details.company.number"></i>
 		</div>
 		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
-		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: <span canvas-field="details.submittedDate"></span></div>
+		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: <span>{{ vm.t.details.submittedDate | date:'dd/MM/yyyy' }}</span></div>
 		<div class="canvas__details">
 			<table>
 				<tr>
@@ -19,11 +19,11 @@
 					</td>
 					<td>
 						<b>Payable to</b>
-						<p>Ikenga Innovations</p>
+						<p canvas-field="details.company.payableTo">Ikenga Innovations</p>
 					</td>
 					<td>
 						<b>Invoice #</b>
-						<p>LH006</p>
+						<p canvas-field="details.recipient.invoiceNumber">LH006</p>
 					</td>
 				</tr>
 				<tr>
@@ -33,7 +33,7 @@
 					</td>
 					<td>
 						<b>Due date</b>
-						<p>20/07/2018</p>
+						<p>{{ vm.t.details.recipient.dueDate | date:'dd/MM/yyyy' }}</p>
 					</td>
 				</tr>
 			</table>
@@ -47,11 +47,11 @@
 					<th>Unit Price</th>
 					<th>Total Price</th>
 				</tr>
-				<tr>
-					<td>Booking Amendments</td>
-					<td>1</td>
-					<td>&pound;216.67</td>
-					<td>&pound;216.67</td>
+				<tr ng-repeat="r in vm.lineItems">
+					<td>{{ r.label }}</td>
+					<td>{{ r.quantity }}</td>
+					<td>&pound;{{ r.unitPrice | price }}</td>
+					<td>&pound;{{ r.totalPrice | price }}</td>
 				</tr>
 			</table>
 		</div>
@@ -61,19 +61,19 @@
 				<table>
 					<tr>
 						<td>Bank Name</td>
-						<td canvas-field="details.companyBank.name">HSBC Bank Plc</td>
+						<td canvas-field="details.companyBank.name"></td>
 					</tr>
 					<tr>
 						<td>Account Name</td>
-						<td canvas-field="details.companyBank.accName">Ikenga Innovations Ltd</td>
+						<td canvas-field="details.companyBank.accName"></td>
 					</tr>
 					<tr>
 						<td>Account Number</td>
-						<td canvas-field="details.companyBank.accNumber">1452152</td>
+						<td canvas-field="details.companyBank.accNumber"></td>
 					</tr>
 					<tr>
 						<td>Sort Code</td>
-						<td canvas-field="details.companyBank.sortCode">40-18-17</td>
+						<td canvas-field="details.companyBank.sortCode"></td>
 					</tr>
 				</table>
 			</div>
@@ -81,14 +81,14 @@
 				<table>
 					<tr>
 						<td class="label" ng-style="{ color: vm.t.colours.primary }">Subtotal</td>
-						<td><b>&pound;216.67</b></td>
+						<td><b>&pound;{{ vm.subTotal | price }}</b></td>
 					</tr>
 					<tr>
 						<td class="label" ng-style="{ color: vm.t.colours.primary }">VAT</td>
-						<td><b>&pound;43.33</b></td>
+						<td><b>&pound;{{ vm.vat | price }}</b></td>
 					</tr>
 				</table>
-				<h2 ng-style="{ color: vm.t.colours.secondary }">&pound;260.00</h2>
+				<h2 ng-style="{ color: vm.t.colours.secondary }">&pound;{{ vm.grandTotal | price }}</h2>
 			</div>
 		</div>
 	</div>

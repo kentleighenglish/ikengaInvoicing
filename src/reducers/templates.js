@@ -1,6 +1,8 @@
 const { cloneDeep, merge } = require('lodash');
 const { actions } = require('actions/templates');
 
+const d = new Date();
+
 const INITIAL_STATE = {
 	defaultTemplate: {
 		name: 'Blank',
@@ -22,7 +24,8 @@ const INITIAL_STATE = {
 				name: "Ikenga Innovations Ltd",
 				address: "Flat 2, 19 New Street\nBedworth, CV12 9DL",
 				email: "invoicing@ikengainnovations.com",
-				number: "07495074144"
+				number: "07495074144",
+				payableTo: "Ikenga Innovations"
 			},
 			companyBank: {
 				name: 'HSBC Bank Plc',
@@ -32,17 +35,18 @@ const INITIAL_STATE = {
 			},
 			recipient: {
 				name: "Amer Siddiq",
-				address: "Locumhive Limited\nKemp House, 15 City Road\nLondon, EC1V 2NX"
-
+				address: "Locumhive Limited\nKemp House, 15 City Road\nLondon, EC1V 2NX",
+				invoiceNumber: "LH006",
+				dueDate: d
 			},
-			submittedDate: "06/07/18",
+			submittedDate: d,
 			project: "Project Example",
 		},
 		lineItems: [
 			{
 				label: "Line Item 1",
 				quantity: 1,
-				unitPrice: 0
+				unitPrice: 216.67
 			}
 		]
 	},
