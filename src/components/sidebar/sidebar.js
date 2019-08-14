@@ -159,6 +159,9 @@ class SidebarController {
 						fogbugz: false,
 						breakAfter: true,
 						buttons: (this.template.lineItems.length === (i+1)) ? [
+							{
+								icon: 'arrow_drop_down'
+							}
 						] : null
 					}
 				]), [])

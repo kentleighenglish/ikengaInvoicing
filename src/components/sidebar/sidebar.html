@@ -11,11 +11,17 @@
 					<div class="flex flex--column">
 						<dynamic-input field="i" on-change="vm.updateField(field)" fogbugz="i.fogbugz"></dynamic-input>
 						<dynamic-input ng-if="i.fogbugz === false && i.fogbugzField" field="i.fogbugzField" on-change="vm.updateField(field)" fogbugz="true"></dynamic-input>
-						<div ng-if="i.buttons" class="flex">
-							<div ng-repeat="b in i.buttons">
+						<div class="sidebar__row">
+							<hr ng-if="i.breakAfter === true" />
+							<div ng-if="i.buttons" class="flex">
+								<div ng-repeat="b in i.buttons">
+									<button>
+										<span ng-if="b.icon" class="icon">{{ b.icon }}</span>
+										<span ng-if="!b.icon">{{ b.label }}</span>
+									</button>
+								</div>
 							</div>
 						</div>
-						<hr ng-if="i.breakAfter === true" />
 					</div>
 				</div>
 			</div>

@@ -3,6 +3,7 @@ const { createStore, applyMiddleware } = require('redux');
 const { createLogger } = require('redux-logger');
 
 const thunk = require('redux-thunk').default;
+const anime = require('animejs').default;
 
 require('ng-redux');
 require('@uirouter/angularjs');
@@ -46,7 +47,8 @@ const init = (modules, rootReducer, routes) => {
 	}])
 	.config(['$uiRouterProvider', function($uiRouter) {
 		// $uiRouter.plugin(Visualizer)
-	}]);
+	}])
+	.service('anime', () => anime);
 	// .factory('socket', SocketFactory)
 
 	angular.bootstrap(document, [ 'app' ]);

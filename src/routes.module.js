@@ -18,7 +18,7 @@ const routes = [
 			},
 			tab: {
 				type: 'string',
-				value: 'design',
+				value: 'company',
 				squash: false
 			}
 		}
