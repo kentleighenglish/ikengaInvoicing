@@ -9,6 +9,7 @@ createModule('ComponentsModule', [], {
 		'viewport',
 		'page-canvas',
 		'template-list',
-		'dynamic-input'
+		'dynamic-input',
+		'loader'
 	]
 });
