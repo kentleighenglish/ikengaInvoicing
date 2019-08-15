@@ -14,7 +14,7 @@
 	<body ng-controller="appController as app" ng-cloak>
 		<layout>
 			<ui-view>
-				Loading
+				<loader ng-if="vm.loading"></loader>
 			</ui-view>
 		</layout>
 	</body>

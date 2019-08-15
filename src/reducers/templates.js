@@ -11,10 +11,10 @@ const INITIAL_STATE = {
 			secondary: '#659e53'
 		},
 		fogbugz: {
-			useFogbugz: false,
-			selectedProject: null,
-			dateFrom: null,
-			dateTo: null,
+			useFogbugz: true,
+			selectedProject: 5,
+			dateFrom: new Date("08/01/2019"),
+			dateTo: new Date("08/14/2019"),
 			hourlyRate: 0,
 			dailyRate: 0,
 			useDailyRate: false

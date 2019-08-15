@@ -1,9 +1,12 @@
-const { apiGetProjects } = require('../libs/api');
+const { apiGetProjects, apiGetItems } = require('../libs/api');
 
 const actions = {
 	FETCH_PROJECTS: 'FETCH_PROJECTS',
 	FETCH_PROJECTS_FAILED: 'FETCH_PROJECTS_FAILED',
-	RECEIVE_PROJECTS: 'RECEIVE_PROJECTS'
+	RECEIVE_PROJECTS: 'RECEIVE_PROJECTS',
+	FETCH_ITEMS: 'FETCH_ITEM',
+	FETCH_ITEMS_FAILED: 'FETCH_FAILED_ITEMS',
+	RECEIVE_ITEMS: 'RECEIVE_ITEMS'
 }
 
 const getProjects = () => async (dispatch, getState) => {
@@ -23,7 +26,28 @@ const getProjects = () => async (dispatch, getState) => {
 	}
 }
 
+const updateTimesheet = () => async (dispatch, getState) => {
+	const { fogbugz: { items }, templates: { templates, currentTemplate } } = getState();
+	const template = templates[currentTemplate];
+
+	const { fogbugz: { dateFrom, dateTo } } = template;
+
+	if (dateFrom && dateTo) {
+		dispatch({
+			type: actions.FETCH_ITEMS
+		});
+
+		const results = await apiGetItems(dateFrom, dateTo);
+
+		dispatch({
+			type: actions.RECEIVE_ITEMS,
+			payload: results
+		});
+	}
+}
+
 module.exports = {
 	actions,
-	getProjects
+	getProjects,
+	updateTimesheet
 }

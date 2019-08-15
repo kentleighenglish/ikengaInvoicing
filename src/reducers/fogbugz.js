@@ -11,6 +11,9 @@ module.exports = (state = cloneDeep(INITIAL_STATE), { type, payload }) => {
 		case actions.RECEIVE_PROJECTS:
 			state.projects = payload || [];
 		break;
+		case actions.RECEIVE_ITEMS:
+			state.items = payload || [];
+		break;
 	}
 
 	return state;

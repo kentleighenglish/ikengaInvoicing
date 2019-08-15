@@ -1,24 +1,29 @@
-const { getProjects } = require('actions/fogbugz');
+const { getProjects, updateTimesheet } = require('actions/fogbugz');
 const { setCurrentTemplate } = require('actions/templates');
 
 class EditController {
 
 	constructor($scope, $ngRedux) {
+		this.$scope = $scope;
 
 		$ngRedux.connect(this.mapStateToThis, this.mapDispatchToThis)(this);
 	}
 
-	mapStateToThis({ templates: { templates }, router: { toParams: { id } } }) {
+	mapStateToThis({ templates: { templates, currentTemplate }, router: { toParams: { id } } }) {
+		const template = currentTemplate ? templates[currentTemplate] : null;
+
 		return {
 			id,
-			templates
+			templates,
+			template
 		}
 	}
 
 	mapDispatchToThis(dispatch) {
 		return {
 			getProjects: () => dispatch(getProjects()),
-			setCurrentTemplate: id => dispatch(setCurrentTemplate(id))
+			setCurrentTemplate: id => dispatch(setCurrentTemplate(id)),
+			updateTimesheet: () => dispatch(updateTimesheet())
 		}
 	}
 
@@ -28,6 +33,13 @@ class EditController {
 		if (!this.templates['temp']) {
 			this.setCurrentTemplate(this.id || 'temp');
 		}
+
+		this.$scope.$watch(() => {
+			const { fogbugz: { dateFrom, dateTo } } = this.template;
+			return { dateFrom, dateTo };
+		}, () => {
+			this.updateTimesheet();
+		}, true);
 	}
 
 }

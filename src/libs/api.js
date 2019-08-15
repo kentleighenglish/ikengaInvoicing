@@ -6,6 +6,10 @@ const apiGetProjects = async () => {
 	return apiCall('projects');
 }
 
+const apiGetItems = async () => {
+	return apiCall('items');
+}
+
 const apiCall = async (path) => {
 	const { status, data = null } = await axios({
 		method: 'GET',
@@ -18,5 +22,6 @@ const apiCall = async (path) => {
 }
 
 module.exports = {
-	apiGetProjects
+	apiGetProjects,
+	apiGetItems
 }
