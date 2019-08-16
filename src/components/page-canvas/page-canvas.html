@@ -1,14 +1,43 @@
+<style>
+	.colour-primary {
+		color: {{ vm.t.colours.primary }};
+	}
+	.colour-secondary {
+		color: {{ vm.t.colours.secondary }};
+	}
+	.background-primary {
+		background-color: {{ vm.t.colours.primary }};
+	}
+	.background-secondary {
+		background-color: {{ vm.t.colours.secondary }};
+	}
+
+	@media print {
+		.colour-primary {
+			color: {{ vm.t.colours.primary }};
+		}
+		.colour-secondary {
+			color: {{ vm.t.colours.secondary }};
+		}
+		.background-primary {
+			background-color: {{ vm.t.colours.primary }};
+		}
+		.background-secondary {
+			background-color: {{ vm.t.colours.secondary }};
+		}
+	}
+</style>
 <div class="canvas" ng-style="{ width: vm.width+'px', fontSize: vm.fontSize+'em' }">
-	<div class="canvas__headerBar" ng-style="{ background: vm.t.colours.primary }"></div>
+	<div class="canvas__headerBar background-primary"></div>
 	<div class="canvas__body">
-		<div class="canvas__header" ng-style="{ color: vm.t.colours.secondary }"><h1 canvas-field="details.company.name"></h1></div>
+		<div class="canvas__header colour-primary"><h1 canvas-field="details.company.name"></h1></div>
 		<div class="canvas__address">
 			<span canvas-field="details.company.address"></span><br>
 			<i canvas-field="details.company.email"></i><br>
 			<i canvas-field="details.company.number"></i>
 		</div>
-		<div class="canvas__subHeader" ng-style="{ color: vm.t.colours.primary }"><h2>Invoice</h2></div>
-		<div class="canvas__submitted" ng-style="{ color: vm.t.colours.secondary }">Submitted on: <span>{{ vm.t.details.submittedDate | date:'dd/MM/yyyy' }}</span></div>
+		<div class="canvas__subHeader colour-primary"><h2>Invoice</h2></div>
+		<div class="canvas__submitted colour-secondary">Submitted on: <span>{{ vm.t.details.submittedDate | date:'dd/MM/yyyy' }}</span></div>
 		<div class="canvas__details">
 			<table>
 				<tr>
@@ -41,7 +70,7 @@
 		<hr>
 		<div class="canvas__items">
 			<table>
-				<tr ng-style="{ color: vm.t.colours.primary }">
+				<tr class="colour-primary">
 					<th>Description</th>
 					<th>Qty</th>
 					<th>Unit Price</th>
@@ -57,7 +86,7 @@
 		</div>
 		<div class="canvas__row">
 			<div class="canvas__bankDetails">
-				<h2 ng-style="{ color: vm.t.colours.secondary }">Bank Details</h2>
+				<h2 class="colour-secondary">Bank Details</h2>
 				<table>
 					<tr>
 						<td>Bank Name</td>
@@ -80,15 +109,15 @@
 			<div class="canvas__total">
 				<table>
 					<tr>
-						<td class="label" ng-style="{ color: vm.t.colours.primary }">Subtotal</td>
+						<td class="label" class="colour-primary">Subtotal</td>
 						<td><b>&pound;{{ vm.subTotal | price }}</b></td>
 					</tr>
 					<tr>
-						<td class="label" ng-style="{ color: vm.t.colours.primary }">VAT</td>
+						<td class="label" class="colour-primary">VAT</td>
 						<td><b>&pound;{{ vm.vat | price }}</b></td>
 					</tr>
 				</table>
-				<h2 ng-style="{ color: vm.t.colours.secondary }">&pound;{{ vm.grandTotal | price }}</h2>
+				<h2 class="colour-secondary">&pound;{{ vm.grandTotal | price }}</h2>
 			</div>
 		</div>
 	</div>

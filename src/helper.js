@@ -30,8 +30,22 @@ const kebabToCamelCase = str => str.replace(/\-([A-z])/g, (match, m) => m.toUppe
 
 const ucFirst = str => str.replace(/^./, m => m.toUpperCase());
 
+const objectToQuery = obj => Object.keys(obj).reduce((str, key) => (str === '' ? `?${key}=${obj[key]}` : `${str}&${key}=${obj[key]}`), '');
+
+const formatDate = d => {
+	let day = addLeadingZeroes(d.getDate(), 1);
+	let month = addLeadingZeroes(d.getMonth()+1, 1);
+	let year = d.getFullYear();
+
+	return `${year}-${month}-${day}`;
+}
+
+const addLeadingZeroes = (i, count) => i.toString().padStart(count+i.toString().length, '0').slice(-2);
+
 module.exports = {
 	createModule,
 	kebabToCamelCase,
-	ucFirst
+	ucFirst,
+	objectToQuery,
+	formatDate
 }

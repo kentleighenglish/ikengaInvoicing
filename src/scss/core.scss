@@ -28,6 +28,9 @@ body {
 	font-size: $font-size-default;
 	font-family: $font-family-default;
 
+	@media print {
+		background: white;
+	}
 }
 
 hr {

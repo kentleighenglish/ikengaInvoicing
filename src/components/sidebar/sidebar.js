@@ -131,12 +131,24 @@ class SidebarController {
 					label: "Timeshet From",
 					type: "date",
 					fogbugz: true
+					// @todo Add validation to keep date lower than dateTo and vice versa
 				},
 				{
 					key: "fogbugz.dateTo",
 					label: "Timesheet To",
 					type: "date",
 					fogbugz: true
+				},
+				{
+					key: "fogbugz.listMode",
+					label: "List By",
+					type: "select",
+					fogbugz: true,
+					options: [
+						{ label: "Case Title", value: "title" },
+						{ label: "Week", value: "week" },
+						{ label: "Day", value: "day" }
+					]
 				},
 				...reduce(this.template.lineItems, (arr, lineItem, i) => ([
 					...arr,
@@ -167,6 +179,11 @@ class SidebarController {
 				]), [])
 			],
 			charges: [
+				{
+					key: "fogbugz.useDailyRate",
+					label: "Use Daily Rate",
+					type: "checkbox"
+				},
 				{
 					key: "fogbugz.hourlyRate",
 					label: "Hourly Rate",

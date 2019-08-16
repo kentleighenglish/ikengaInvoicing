@@ -15,8 +15,10 @@ const INITIAL_STATE = {
 			selectedProject: 5,
 			dateFrom: new Date("08/01/2019"),
 			dateTo: new Date("08/14/2019"),
-			hourlyRate: 0,
-			dailyRate: 0,
+			listMode: "week",
+			hourlyRate: 16,
+			dailyRate: 385,
+			dayHours: 7.5,
 			useDailyRate: false
 		},
 		details: {

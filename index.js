@@ -12,7 +12,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/api/:endpoint', async (request, response) => {
-	const { params } = request;
+	const { params, query } = request;
+
+	debug(`Received API Request from ${request.headers.referer}`);
 
 	let output = {
 		data: null,
@@ -23,7 +25,10 @@ app.get('/api/:endpoint', async (request, response) => {
 	try {
 		switch(params.endpoint) {
 			case 'projects':
-			output.data = await ms.getProjects();
+				output.data = await ms.getProjects();
+			break;
+			case 'items':
+				output.data = await ms.getItems(query);
 			break;
 			default:
 				throw 'Endpoint does not exist';
@@ -33,6 +38,8 @@ app.get('/api/:endpoint', async (request, response) => {
 		output.errors.push(e.message);
 		response.status(500);
 	}
+
+	debug('Sending API Response:', JSON.stringify(output));
 
 	response.setHeader('Content-Type', 'application/json');
 	response.send(JSON.stringify(output));

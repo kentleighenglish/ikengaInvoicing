@@ -7,6 +7,8 @@
 		placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label }}"
 		ng-model="vm.field.value"
 		ng-change="vm.onChange({ field: vm.field })"
+		ng-attr-max="{{ vm.field.max }}"
+		ng-attr-min="{{ vm.field.min }}"
 	/>
 	<textarea
 		ng-if="vm.field.type === 'textarea'"

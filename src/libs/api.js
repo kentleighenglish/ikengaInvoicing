@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { objectToQuery } = require('../helper');
 
 const host = window.location.origin;
 
@@ -6,8 +7,8 @@ const apiGetProjects = async () => {
 	return apiCall('projects');
 }
 
-const apiGetItems = async () => {
-	return apiCall('items');
+const apiGetItems = async (dateFrom, dateTo, project) => {
+	return apiCall('items'+objectToQuery({ dateFrom, dateTo, project }));
 }
 
 const apiCall = async (path) => {

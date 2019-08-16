@@ -22,6 +22,7 @@ page-canvas {
 		@media print {
 			box-shadow: none;
 			color: inherit;
+			color: $c-text-light;
 		}
 
 		hr {
@@ -35,10 +36,6 @@ page-canvas {
 			display: block;
 			width: 100%;
 			height: 1.4em;
-
-			@media print {
-				background-color: red;
-			}
 		}
 
 		&__body {

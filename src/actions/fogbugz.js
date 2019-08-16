@@ -1,4 +1,5 @@
 const { apiGetProjects, apiGetItems } = require('../libs/api');
+const moment = require('moment');
 
 const actions = {
 	FETCH_PROJECTS: 'FETCH_PROJECTS',
@@ -30,14 +31,14 @@ const updateTimesheet = () => async (dispatch, getState) => {
 	const { fogbugz: { items }, templates: { templates, currentTemplate } } = getState();
 	const template = templates[currentTemplate];
 
-	const { fogbugz: { dateFrom, dateTo } } = template;
+	const { fogbugz: { dateFrom, dateTo, selectedProject } } = template;
 
 	if (dateFrom && dateTo) {
 		dispatch({
 			type: actions.FETCH_ITEMS
 		});
 
-		const results = await apiGetItems(dateFrom, dateTo);
+		const results = await apiGetItems(moment(dateFrom).format('YYYY-MM-DD'), moment(dateTo).format('YYYY-MM-DD'), selectedProject);
 
 		dispatch({
 			type: actions.RECEIVE_ITEMS,
