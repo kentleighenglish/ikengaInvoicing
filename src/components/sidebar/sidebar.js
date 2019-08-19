@@ -38,6 +38,15 @@ class SidebarController {
 
 		this.items = [0];
 
+		this.generateFields();
+
+		this.$scope.$watch(() => this.currentTemplate, () => {
+			this.template = cloneDeep(this.currentTemplate);
+			this.generateFields();
+		}, true);
+	}
+
+	generateFields() {
 		this.fields = reduce({
 			company: [
 				{
@@ -187,12 +196,20 @@ class SidebarController {
 				{
 					key: "fogbugz.hourlyRate",
 					label: "Hourly Rate",
-					type: "number"
+					type: "number",
+					hide: !!this.template.fogbugz.useDailyRate
 				},
 				{
 					key: "fogbugz.dailyRate",
 					label: "Daily Rate",
-					type: "number"
+					type: "number",
+					hide: !this.template.fogbugz.useDailyRate
+				},
+				{
+					key: "fogbugz.dayHours",
+					label: "Hours in Day",
+					type: "number",
+					hide: !this.template.fogbugz.useDailyRate
 				}
 			]
 		}, (obj, fields, group) => ({

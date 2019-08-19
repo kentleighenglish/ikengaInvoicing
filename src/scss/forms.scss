@@ -6,24 +6,28 @@ label {
 	color: $primary;
 	font-size: 12px;
 
+	&.hidden {
+		display: none;
+	}
+
 	&.checkbox {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		cursor: pointer;
+		margin: ($gap / 2) 0;
 
-		>span {
+		>span.tick {
 			position: relative;
 			display: block;
 			padding: 4px;
-
-			margin-left: $gap;
 			min-width: 30px;
 			min-height: 30px;
 			width: 30px;
 			height: 30px;
 			border: 1px solid $primary;
-			border-radius: 3px;
+			border-radius: 2px;
+			margin: ($gap /2) $gap ($gap /2) 0;
 
 			transition: border-color .3s;
 
@@ -46,7 +50,7 @@ label {
 			}
 		}
 
-		input:checked+span {
+		input:checked~span.tick {
 			&:before {
 				opacity: 1;
 			}

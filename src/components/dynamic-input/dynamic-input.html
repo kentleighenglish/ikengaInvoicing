@@ -1,7 +1,9 @@
-<label for="{{vm.field.key}}">
-	{{ vm.field.label }}
+<label for="{{vm.field.key}}" class="{{ vm.field.type }}" ng-click="vm.toggleCheckbox()" ng-class="{ hidden: vm.field.hide }">
+	<input ng-if="vm.field.type === 'checkbox'" type="checkbox" name="{{vm.field.key}}" ng-model="vm.field.value" />
+	<span class="tick" ng-if="vm.field.type === 'checkbox'"></span>
+	<span class="label">{{ vm.field.label }}</span>
 	<input
-		ng-if="vm.field.type !== 'select' && vm.field.type !== 'textarea'"
+		ng-if="vm.field.type !== 'select' && vm.field.type !== 'textarea' && vm.field.type !== 'checkbox'"
 		type="{{vm.field.type}}"
 		name="{{vm.field.key}}"
 		placeholder="{{ vm.field.placeholder ? vm.field.placeholder : vm.field.label }}"

@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 			hourlyRate: 16,
 			dailyRate: 385,
 			dayHours: 7.5,
-			useDailyRate: false
+			useDailyRate: true
 		},
 		details: {
 			company: {

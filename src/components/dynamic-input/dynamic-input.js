@@ -27,6 +27,14 @@ class DynamicInputController {
 			this.dynamicHeight = height;
 		}
 	}
+
+	toggleCheckbox() {
+		if (this.field.type === 'checkbox') {
+			this.field.value = !this.field.value;
+
+			this.onChange({ field: this.field });
+		}
+	}
 }
 
 module.exports = {

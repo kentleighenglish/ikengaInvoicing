@@ -4,6 +4,7 @@ createModule('FiltersModule', [], {
 	pathPrefix: './filters/',
 	filters: [
 		'nl2br',
-		'price'
+		'price',
+		'round'
 	]
 });

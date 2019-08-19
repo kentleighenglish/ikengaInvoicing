@@ -69,7 +69,7 @@
 		</div>
 		<hr>
 		<div class="canvas__items">
-			<table>
+			<table ng-if="!vm.t.fogbugz.useDailyRate" cellpadding="8">
 				<tr class="colour-primary">
 					<th>Description</th>
 					<th>Qty</th>
@@ -80,6 +80,24 @@
 					<td>{{ r.label }}</td>
 					<td>{{ r.quantity }}</td>
 					<td>&pound;{{ r.unitPrice | price }}</td>
+					<td>&pound;{{ r.totalPrice | price }}</td>
+				</tr>
+			</table>
+			<table ng-if="vm.t.fogbugz.useDailyRate" cellpadding="8">
+				<tr class="colour-primary">
+					<th>Description</th>
+					<th>Hours Per Day</th>
+					<th>Total Days</th>
+					<th>Total Hours</th>
+					<th>Day Rate</th>
+					<th>Total Price</th>
+				</tr>
+				<tr ng-repeat="r in vm.lineItems">
+					<td>{{ r.label }}</td>
+					<td>{{ vm.t.fogbugz.dayHours }}</td>
+					<td>{{ r.timeWorked / vm.t.fogbugz.dayHours | round:2 }}</td>
+					<td>{{ r.timeWorked }}</td>
+					<td>&pound;{{ vm.t.fogbugz.dailyRate | price }}</td>
 					<td>&pound;{{ r.totalPrice | price }}</td>
 				</tr>
 			</table>
